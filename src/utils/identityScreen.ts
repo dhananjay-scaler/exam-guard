@@ -31,10 +31,12 @@ export const VERIFIED_CONFIRMATION = 'I confirm that I am the person taking this
 
 export const CAPTURE_COPY = {
   waiting: 'Waiting for you to sit in front of the camera',
-  ready: 'You are in frame. Start when ready.',
+  // Nothing has checked the face yet when the camera starts, so this only says the camera is on.
+  ready: 'Camera is on. Put your face in the oval, look at the camera and start when ready.',
   running: 'Follow the instructions in the camera window.',
   pill: 'Put your face in the oval',
   caption: 'A short live check: keep your face in the oval while the screen changes colour.',
+  selfieCaption: 'We take one photo of you and match it with the photo on your record.',
 };
 
 export type IdentityScreenState =

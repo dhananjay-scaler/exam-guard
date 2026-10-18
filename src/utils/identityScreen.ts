@@ -12,7 +12,9 @@ export const CONSENT_COPY = {
   title: 'Let us check if it is really you',
   body: 'We will do a short live video check to make sure you are really there, then match your face with '
     + 'the photo on your Scaler record. This takes about 20 seconds.',
-  instructions: 'Follow the instructions on your screen and keep your face in the oval until it finishes.',
+  // Without liveness the check is one photo, so nothing about a video, timing or following instructions.
+  selfieBody: 'We will take one photo of you and match it with the photo on your Scaler record. It takes a few seconds.',
+  selfieInstructions: 'Sit facing the camera in good light, put your face in the oval and press Start face check.',
   retention: 'Your scan is kept securely for exam records and deleted after 90 days.',
   checkbox: 'I agree to a face check.',
   declined: 'You need to agree to the face check to take this test. If you have questions, contact support.',
@@ -144,7 +146,7 @@ export const identityScreen = (
     });
   }
   if (status.consent?.required && !status.consent.given) {
-    return screen('consent', { title: CONSENT_COPY.title, body: CONSENT_COPY.body });
+    return screen('consent', { title: CONSENT_COPY.title, body: isLivenessOn(status) ? CONSENT_COPY.body : CONSENT_COPY.selfieBody });
   }
 
   switch (status.status) {
